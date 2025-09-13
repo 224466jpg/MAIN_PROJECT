@@ -1,0 +1,196 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap');
+
+/* Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Body with animated background */
+body {
+    font-family: 'Inter', sans-serif;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(135deg, #0b0b0c, #121213);
+    color: #877e7e;
+    overflow: hidden;
+    position: relative;
+    font-family: 'Inter', sans-serif;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #333;
+    overflow: hidden;
+    margin: 0;
+
+    /* Gradient + Background image */
+    background: 
+        linear-gradient(135deg, rgba(245, 247, 250, 0.6), rgba(195, 207, 226, 0.6)),
+        url("thegrocery.webp");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+/* Animated floating background blobs */
+body::before,
+body::after {
+    content: '';
+    position: absolute;
+    border-radius: 50%;
+    background: radial-gradient(circle, #d1dfff 0%, #f3f9ff 100%);
+    opacity: 0.4;
+    animation: floatBlobs 20s infinite alternate ease-in-out;
+    z-index: 0;
+    opacity: 0.25;
+    background: radial-gradient(circle, #ffffff 0%, #d6e4f0 100%);
+    animation: floatBlobs 20s infinite alternate ease-in-out;
+}
+
+body::before {
+    width: 400px;
+    height: 400px;
+    top: -100px;
+    left: -100px;
+}
+
+body::after {
+    width: 500px;
+    height: 500px;
+    bottom: -120px;
+    right: -120px;
+    animation-delay: 5s;
+}
+
+/* Dashboard Card */
+.dashboard-card {
+    position: relative;
+    z-index: 1;
+    background: rgba(255, 255, 255, 0.6);
+    backdrop-filter: blur(20px);
+    padding: 40px 60px;
+    border-radius: 20px;
+    text-align: center;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+    animation: fadeInUp 1s ease;
+    transition: all 0.3s ease-in-out;
+}
+
+/* Title */
+h1 {
+    font-size: 2.2rem;
+    margin-bottom: 25px;
+    font-weight: 600;
+    color: #0e0d0d;
+}
+
+/* Link buttons */
+a {
+    display: block;
+    margin: 12px 0;
+    padding: 14px 24px;
+    background: rgba(255, 255, 255, 0.5);
+    color: #333;
+    text-decoration: none;
+    border-radius: 12px;
+    font-weight: 500;
+    transition: all 0.4s ease;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+}
+
+/* Button shimmer hover effect */
+a::before {
+    content: "";
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: rgba(23, 21, 21, 0.3);
+    transform: rotate(45deg);
+    transition: 0.6s;
+    z-index: 0;
+}
+
+a:hover::before {
+    top: 0;
+    left: 0;
+}
+
+a:hover {
+    background: rgba(255, 255, 255, 0.7);
+    transform: translateY(-4px);
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.1);
+}
+
+/* Ensure content is above ::before */
+a span {
+    position: relative;
+    z-index: 1;
+}
+
+/* Fade In Animation */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Background blob animation */
+@keyframes floatBlobs {
+    0% {
+        transform: translate(0, 0) scale(1);
+    }
+
+    100% {
+        transform: translate(50px, -50px) scale(1.1);
+    }
+}
+.glass-box h1 {
+    font-size: 2rem;
+    margin-bottom: 20px;
+    font-weight: 600;
+}
+
+/* Buttons / links inside */
+.glass-box a {
+    display: inline-block;
+    margin: 10px;
+    padding: 12px 20px;
+    border-radius: 12px;
+    text-decoration: none;
+    font-weight: 500;
+    color: #fff;
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.glass-box a:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 16px rgba(0,0,0,0.25);
+}
+
+/* Animation */
+@keyframes fadeInUp {
+    0% {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}

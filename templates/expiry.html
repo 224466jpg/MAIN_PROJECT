@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Expiry Tracker</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/expiry.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Animated background elements -->
+    <div class="bg-animation">
+        <div class="floating-shape shape-1"></div>
+        <div class="floating-shape shape-2"></div>
+        <div class="floating-shape shape-3"></div>
+        <div class="floating-shape shape-4"></div>
+        <div class="floating-shape shape-5"></div>
+    </div>
+
+    <!-- Main container -->
+    <div class="main-container">
+        <!-- Header section -->
+        <div class="header-section">
+            <div class="title-container">
+                <i class="fas fa-shopping-basket title-icon"></i>
+                <h2 class="main-title">Your Groceries</h2>
+                <div class="title-underline"></div>
+            </div>
+        </div>
+
+        <!-- Content section -->
+        <div class="content-wrapper">
+            {% if items %}
+            <!-- Table container with groceries -->
+            <div class="table-container" id="tableContainer">
+                <div class="table-header">
+                    <h3><i class="fas fa-list-ul"></i> Grocery Items</h3>
+                    <div class="stats-badge">
+                        <span class="item-count">{{ items|length }} Items</span>
+                    </div>
+                </div>
+                
+                <div class="table-wrapper">
+                    <table class="grocery-table">
+                        <thead>
+                            <tr class="table-header-row">
+                                <th><i class="fas fa-tag"></i> Name</th>
+                                <th><i class="fas fa-sort-numeric-up"></i> Quantity</th>
+                                <th><i class="fas fa-calendar-alt"></i> Expiry Date</th>
+                                <th><i class="fas fa-info-circle"></i> Status</th>
+                                <th><i class="fas fa-cogs"></i> Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for item in items %}
+                            <tr class="table-row" data-status="{{ item.status }}">
+                                <td>
+                                    <div class="item-info">
+                                        <i class="fas fa-apple-alt item-icon"></i>
+                                        <span>{{ item.name }}</span>
+                                    </div>
+                                </td>
+                                <td><span class="quantity-badge">{{ item.quantity }}</span></td>
+                                <td><span class="date-text">{{ item.expiry_date }}</span></td>
+                                <td>
+                                    <span class="status-badge status-{{ item.status }}">
+                                        {{ item.status|capitalize }}
+                                    </span>
+                                </td>
+                                <td>
+                                    <a class="action-btn delete-btn" href="{{ url_for('delete_product', item_id=item.id) }}">
+                                        <i class="fas fa-trash-alt"></i>
+                                        <span>Delete</span>
+                                    </a>
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            {% else %}
+            <!-- Empty state -->
+            <div class="empty-state" id="emptyState">
+                <div class="empty-illustration">
+                    <i class="fas fa-shopping-cart empty-icon"></i>
+                    <div class="empty-circles">
+                        <div class="circle circle-1"></div>
+                        <div class="circle circle-2"></div>
+                        <div class="circle circle-3"></div>
+                    </div>
+                </div>
+                <h3 class="empty-title">No groceries added yet</h3>
+                <p class="empty-subtitle">Start tracking your groceries to avoid waste!</p>
+                <a href="{{ url_for('add_product') }}" class="add-first-btn">
+                    <i class="fas fa-plus"></i>
+                    Add Your First Item
+                </a>
+            </div>
+            {% endif %}
+        </div>
+
+        <!-- Floating action buttons -->
+        <div class="fab-container">
+            <a href="{{ url_for('add_product') }}" class="fab main-fab">
+                <i class="fas fa-plus"></i>
+            </a>
+            <button class="fab secondary-fab fab-1">
+                <i class="fas fa-barcode"></i>
+            </button>
+            <button class="fab secondary-fab fab-2">
+                <i class="fas fa-camera"></i>
+            </button>
+            <button class="fab secondary-fab fab-3">
+                <i class="fas fa-list"></i>
+            </button>
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/grocery_script.js') }}"></script>
+</body>
+</html>

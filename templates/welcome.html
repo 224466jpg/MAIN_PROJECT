@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+    <meta charset="UTF-8">
+    <title>Welcome</title>
+    <head>
+
+<link rel="stylesheet" href="{{ url_for('static', filename='css/welcome.css') }}">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Anton&family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..900;1,6..96,400..900&display=swap" rel="stylesheet">
+    </head>
+
+    
+<body class="bg-light">
+    
+
+        <div class="mt-4">
+            
+            <body>
+    <!-- Animated background -->
+    <div class="bg-animation">
+        <div class="floating-shape shape-1"></div>
+        <div class="floating-shape shape-2"></div>
+        <div class="floating-shape shape-3"></div>
+    </div>
+
+    <!-- Particle system -->
+    <div class="particles" id="particles"></div>
+
+    <!-- Main content -->
+    <div class="container">
+        <div class="welcome-card">
+            <h1>WELCOME TO KHANA KHAZANA</h1>
+            <p class="lead">Groceries and Gratitude.</p>
+            
+            <div class="button-container">
+                <a href="{{ url_for('signup') }}" class="btn btn-primary">Sign Up</a>
+                <a href="{{ url_for('login') }}" class="btn btn-success">Login</a>
+            </div>
+        </div>
+    </div>
+        </div>
+    </div>
+</body>
+</html>
